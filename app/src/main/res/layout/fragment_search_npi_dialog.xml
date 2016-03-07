@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mx3studios.npiregistry.SearchNpiDialogFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/npiSearchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/searchTitle"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"/>
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_below="@id/searchTitle"
+            android:maxLength="25"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"/>
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_below="@id/first_name"
+            android:maxLength="25"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"/>
+        <Button
+            android:id="@+id/buttonSearchNpi"
+            android:layout_below="@id/last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_npi"
+            android:onClick="searchNpi"/>
+    </RelativeLayout>
+</FrameLayout>
