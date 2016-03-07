@@ -86,6 +86,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void displayDetailedResult(NpiResult result) {
+        mFavoriteFragment.displayDetailResult(result);
 
     }
     @Override

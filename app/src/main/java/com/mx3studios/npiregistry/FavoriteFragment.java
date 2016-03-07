@@ -3,6 +3,7 @@ package com.mx3studios.npiregistry;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 
 import com.mx3studios.npiregistry.npi.NpiParserResult;
 import com.mx3studios.npiregistry.npi.NpiQuery;
+import com.mx3studios.npiregistry.npi.NpiResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class FavoriteFragment extends Fragment {
     private ArrayAdapter<String> arrayAdapter = null;
     private SearchNpiDialogFragment mdialogSearchFragment = null;
     private NpiResultDialogFragment mNpiResultFragment = null;
+    private NpiDetailDialogFragment mNpiDetailFragment = null;
+
     public static FavoriteFragment newInstance() {
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
@@ -63,6 +67,12 @@ public class FavoriteFragment extends Fragment {
     private void showDialog() {
         mdialogSearchFragment = new SearchNpiDialogFragment();
         mdialogSearchFragment.show(getFragmentManager(), "dialog");
+    }
+
+    public void displayDetailResult(NpiResult result) {
+        mNpiDetailFragment = new NpiDetailDialogFragment();
+        mNpiDetailFragment.setNpiResult(result);
+        mNpiDetailFragment.show(getFragmentManager(), "detailDialog");
     }
 
     public void displayResults(NpiParserResult result) {
