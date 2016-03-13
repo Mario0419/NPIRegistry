@@ -6,6 +6,7 @@ import java.util.Locale;
 import android.os.AsyncTask;
 import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,11 +36,20 @@ public class MainActivity extends FragmentActivity {
     private SearchFragment mSearchFragment = null;
     private FavoriteFragment mFavoriteFragment = null;
 
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+
+    private String[] menuList = new String[]{"Favorites", "Results", "Advanced Search", "About"};
+
+    private String mTitle = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.npi_drawer_layout);
 
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView)findViewById(R.id.left_drawer);
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState != null) {
                 return;
@@ -46,6 +57,10 @@ public class MainActivity extends FragmentActivity {
             mFavoriteFragment = new FavoriteFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFavoriteFragment).commit();
         }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, menuList);
+        mDrawerList.setAdapter(arrayAdapter);
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
     }
 
 
@@ -104,6 +119,32 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+        }
 
+    }
+    private void selectItem(int position) {
+        Fragment fragment = new FavoriteFragment();
+        Bundle args = new Bundle();
+        args.putInt("1", position);
+        fragment.setArguments(args);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+
+        mDrawerList.setItemChecked(position, true);
+        setTitle(menuList[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    public void setTitel(CharSequence title) {
+        mTitle = title.toString();
+        getActionBar().setTitle(mTitle);
+    }
 
 }
