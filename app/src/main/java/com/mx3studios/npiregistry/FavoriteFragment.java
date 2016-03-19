@@ -25,7 +25,8 @@ public class FavoriteFragment extends Fragment {
     private List<String> list = null;
     private ArrayAdapter<String> arrayAdapter = null;
     private SearchNpiDialogFragment mdialogSearchFragment = null;
-    private ResultFragment mNpiResultFragment = null;
+    int layout = R.layout.fragment_favorite;
+//    private ResultFragment mNpiResultFragment = null;
     private NpiDetailDialogFragment mNpiDetailFragment = null;
 
     public static FavoriteFragment newInstance() {
@@ -50,6 +51,7 @@ public class FavoriteFragment extends Fragment {
                 android.R.layout.simple_list_item_1,
                 list
         );
+        System.out.println("the aarra adapter is " + arrayAdapter);
         searchButton = (Button)view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,31 +59,20 @@ public class FavoriteFragment extends Fragment {
                 showDialog();
             }
         });
-
         listView.setAdapter(arrayAdapter);
-
         return view;
+    }
+
+    public int getLayoutRes() {
+        return layout;
     }
     private void showDialog() {
         mdialogSearchFragment = new SearchNpiDialogFragment();
         mdialogSearchFragment.show(getFragmentManager(), "dialog");
     }
 
-    public void displayDetailResult(NpiResult result) {
-        mNpiDetailFragment = new NpiDetailDialogFragment();
-        mNpiDetailFragment.setNpiResult(result);
-        mNpiDetailFragment.show(getFragmentManager(), "detailDialog");
-    }
-
-    public void displayResults(NpiParserResult result) {
-        mNpiResultFragment = ((MainActivity)getActivity()).getResultFragment();
-        mNpiResultFragment.setNpiParserResult(result);
-        ((MainActivity)getActivity()).setPosition(1);
-    }
-
     public NpiQuery getQuery(View v) {
         NpiQuery query = new NpiQuery();
-        Log.i("Error", "bub " + mdialogSearchFragment.getFirstName());
         query.setFirstName(mdialogSearchFragment.getFirstName());
         query.setLastName(mdialogSearchFragment.getLastName());
         return query;

@@ -59,7 +59,6 @@ public class NpiResultDialogFragment extends DialogFragment{
                 //display detailed fragment here
                 Object o = listView.getItemAtPosition(position);
                 NpiResult result = (NpiResult)o;
-                ((MainActivity)getActivity()).displayDetailedResult(result);
             }
         });
     }

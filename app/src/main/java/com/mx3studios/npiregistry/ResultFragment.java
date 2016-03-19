@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,16 @@ import java.util.ArrayList;
  */
 public class ResultFragment extends Fragment {
     private FragmentManager fm;
-    private View view;
+//    private View view = null;
     private NpiParserResult npiresult;
     private boolean noResult = false;
     private ListView listView;
     private NpiAdapter npiAdapter = null;
 
+    public static ResultFragment newInstance() {
+        ResultFragment fragment = new ResultFragment();
+        return fragment;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -39,24 +44,30 @@ public class ResultFragment extends Fragment {
 
     public void setNpiParserResult(NpiParserResult result) {
         npiresult = result;
+        for(int i = 0 ; i < npiresult.getResultList().size(); i++) {
+            System.out.println(npiresult.getResultList().get(i).getNpi());
+        }
+        System.out.println(npiAdapter);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_result_npi_dialog, null);
-        FragmentManager fm = getFragmentManager();
-        npiresult = new NpiParserResult();
-        processResult();
+        View view = inflater.inflate(R.layout.fragment_result_npi_dialog, container, false);
+       if(npiresult == null) {
+           npiresult = new NpiParserResult();
+       }
+        Log.e("ERROR BUB", "I Was here");
+        processResult(view);
         return view;
     }
 
-    private void processResult() {
+    private void processResult(View view) {
 
         listView = (ListView)view.findViewById(R.id.resultList);
         npiAdapter = new NpiAdapter(
                 getActivity().getApplicationContext(),
                 npiresult.getResultList()
         );
+        System.out.println("THE RESULT ADAPTER IS " + npiAdapter);
         listView.setAdapter(npiAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,9 +76,9 @@ public class ResultFragment extends Fragment {
                 //display detailed fragment here
                 Object o = listView.getItemAtPosition(position);
                 NpiResult result = (NpiResult) o;
-                ((MainActivity) getActivity()).displayDetailedResult(result);
             }
         });
+
     }
 
     public class NpiAdapter extends ArrayAdapter<NpiResult> {

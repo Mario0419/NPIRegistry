@@ -76,7 +76,6 @@ public class MainActivity extends FragmentActivity {
 
     public void searchNpi(View v) {
         final NpiQuery query = mFavoriteFragment.getQuery(v);
-        Log.i("Error", "Came here");
         mFavoriteFragment.closeSearchDialog();
         AsyncTask<Void, Void, NpiParserResult> worker = new AsyncTask<Void, Void, NpiParserResult>() {
             @Override
@@ -94,16 +93,16 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             protected void onPostExecute(NpiParserResult result) {
-                mFavoriteFragment.displayResults(result);
+                Log.e("ERROR BUB", "I Was hereeeeeeee");
+                getResultFragment();
+                mResultFragment.setNpiParserResult(result);
+//                getResultFragment().setNpiParserResult(result);
+                setPosition(1);
             }
         };
         worker.execute();
     }
 
-    public void displayDetailedResult(NpiResult result) {
-        mFavoriteFragment.displayDetailResult(result);
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -184,7 +183,10 @@ public class MainActivity extends FragmentActivity {
     }
 
     public ResultFragment getResultFragment() {
-        return mResultFragment == null ? new ResultFragment() : mResultFragment;
+        if(mResultFragment == null) {
+            mResultFragment = new ResultFragment();
+        }
+        return mResultFragment;
     }
 
 }
