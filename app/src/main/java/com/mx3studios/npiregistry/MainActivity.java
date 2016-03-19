@@ -35,7 +35,10 @@ public class MainActivity extends FragmentActivity {
 
     private SearchFragment mSearchFragment = null;
     private FavoriteFragment mFavoriteFragment = null;
-
+    private ResultFragment mResultFragment = null;
+    private AdvanceSearchFragment mAdvanceSearchFragment = null;
+    private AboutFragment mAboutFragment = null;
+    private int selectedPosition = 0;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
@@ -54,9 +57,9 @@ public class MainActivity extends FragmentActivity {
             if(savedInstanceState != null) {
                 return;
             }
-            mFavoriteFragment = new FavoriteFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFavoriteFragment).commit();
         }
+        mFavoriteFragment = new FavoriteFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.content_frame, mFavoriteFragment).commit();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, menuList);
         mDrawerList.setAdapter(arrayAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -95,9 +98,6 @@ public class MainActivity extends FragmentActivity {
             }
         };
         worker.execute();
-
-
-
     }
 
     public void displayDetailedResult(NpiResult result) {
@@ -111,7 +111,6 @@ public class MainActivity extends FragmentActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -126,25 +125,66 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
+    public void setPosition(int position) {
+        selectItem(position);
+    }
     private void selectItem(int position) {
-        Fragment fragment = new FavoriteFragment();
+        Fragment fragment = null;
         Bundle args = new Bundle();
         args.putInt("1", position);
+        if(selectedPosition == position) {
+            mDrawerLayout.closeDrawer(mDrawerList);
+            return;
+        }
+        switch(position) {
+            case 0:
+                if(mFavoriteFragment == null) {
+                    mFavoriteFragment = new FavoriteFragment();
+                }
+                fragment = mFavoriteFragment;
+                break;
+            case 1:
+                if(mResultFragment == null) {
+                    mResultFragment = new ResultFragment();
+                }
+                fragment = mResultFragment;
+                break;
+            case 2:
+                if(mAdvanceSearchFragment == null) {
+                    mAdvanceSearchFragment = new AdvanceSearchFragment();
+                }
+                fragment = mAdvanceSearchFragment;
+                break;
+            case 3:
+                if(mAboutFragment == null) {
+                    mAboutFragment = new AboutFragment();
+                }
+                fragment = mAboutFragment;
+                break;
+            default:
+                fragment = new FavoriteFragment();
+                break;
+        }
         fragment.setArguments(args);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
 
         mDrawerList.setItemChecked(position, true);
+        selectedPosition = position;
         setTitle(menuList[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    public void setTitel(CharSequence title) {
+    public void setTitle(CharSequence title) {
         mTitle = title.toString();
-        getActionBar().setTitle(mTitle);
+    }
+
+    public ResultFragment getResultFragment() {
+        return mResultFragment == null ? new ResultFragment() : mResultFragment;
     }
 
 }

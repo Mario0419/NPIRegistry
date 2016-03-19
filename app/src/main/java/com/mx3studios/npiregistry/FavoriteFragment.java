@@ -25,7 +25,7 @@ public class FavoriteFragment extends Fragment {
     private List<String> list = null;
     private ArrayAdapter<String> arrayAdapter = null;
     private SearchNpiDialogFragment mdialogSearchFragment = null;
-    private NpiResultDialogFragment mNpiResultFragment = null;
+    private ResultFragment mNpiResultFragment = null;
     private NpiDetailDialogFragment mNpiDetailFragment = null;
 
     public static FavoriteFragment newInstance() {
@@ -54,8 +54,6 @@ public class FavoriteFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                list.add("1");
-//                listView.setAdapter(arrayAdapter);
                 showDialog();
             }
         });
@@ -76,9 +74,9 @@ public class FavoriteFragment extends Fragment {
     }
 
     public void displayResults(NpiParserResult result) {
-        mNpiResultFragment = new NpiResultDialogFragment();
+        mNpiResultFragment = ((MainActivity)getActivity()).getResultFragment();
         mNpiResultFragment.setNpiParserResult(result);
-        mNpiResultFragment.show(getFragmentManager(), "resultDialog");
+        ((MainActivity)getActivity()).setPosition(1);
     }
 
     public NpiQuery getQuery(View v) {

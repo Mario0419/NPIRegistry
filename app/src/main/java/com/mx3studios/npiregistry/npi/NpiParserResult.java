@@ -20,7 +20,7 @@ public class NpiParserResult {
     }
 
     public ArrayList<NpiResult> getResultList() {
-        return list;
+        return list == null ? new ArrayList<NpiResult>() : list;
     }
 
     public void setErrorMap(HashMap<String, String> map) {
