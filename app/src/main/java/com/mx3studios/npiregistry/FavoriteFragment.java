@@ -51,7 +51,6 @@ public class FavoriteFragment extends Fragment {
                 android.R.layout.simple_list_item_1,
                 list
         );
-        System.out.println("the aarra adapter is " + arrayAdapter);
         searchButton = (Button)view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override

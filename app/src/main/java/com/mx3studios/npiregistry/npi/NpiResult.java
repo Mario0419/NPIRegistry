@@ -17,6 +17,7 @@ public class NpiResult {
     private String enumType = "";
     private Integer lastEpoch;
     private Integer npi;
+    private boolean favorite;
 
     public NpiResult() {
 
@@ -88,6 +89,14 @@ public class NpiResult {
 
     public void setNpi(Integer npi) {
         this.npi = npi;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public boolean getFavorite() {
+        return favorite;
     }
 }
 

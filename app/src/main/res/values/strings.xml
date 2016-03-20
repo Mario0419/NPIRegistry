@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">NPI Registry</string>
     <string name="hello_favorite">Favorite Fragment</string>
-    <string name="hello_world">Hello world!</string>
-
     <string name="action_settings">Settings</string>
     <string name="search_npi">Search</string>
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addToFavorite">Add to Favorites</string>
 </resources>

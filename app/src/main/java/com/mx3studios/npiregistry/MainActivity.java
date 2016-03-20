@@ -63,7 +63,6 @@ public class MainActivity extends FragmentActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, menuList);
         mDrawerList.setAdapter(arrayAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
     }
 
 
@@ -93,10 +92,8 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             protected void onPostExecute(NpiParserResult result) {
-                Log.e("ERROR BUB", "I Was hereeeeeeee");
                 getResultFragment();
                 mResultFragment.setNpiParserResult(result);
-//                getResultFragment().setNpiParserResult(result);
                 setPosition(1);
             }
         };

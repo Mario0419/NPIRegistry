@@ -17,15 +17,17 @@
             android:text="@string/hello_favorite"/>
         <ListView
             android:id="@+id/favoritelist"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#00FF00"
+            android:background="#FFFFFF"
             android:layout_weight="1"
             android:drawSelectorOnTop="false"/>
         <Button
             android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/cmdgreen"
+            android:textColor="@color/white"
             android:text="@string/search_npi"/>
     </LinearLayout>
 

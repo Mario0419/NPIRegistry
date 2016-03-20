@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -67,9 +69,7 @@ public class ResultFragment extends Fragment {
                 getActivity().getApplicationContext(),
                 npiresult.getResultList()
         );
-        System.out.println("THE RESULT ADAPTER IS " + npiAdapter);
         listView.setAdapter(npiAdapter);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,7 +88,7 @@ public class ResultFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            NpiResult result = getItem(position);
+            final NpiResult result = getItem(position);
             if(convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.npi_list_item, parent, false);
             }
@@ -96,7 +96,22 @@ public class ResultFragment extends Fragment {
             TextView npiName = (TextView) convertView.findViewById(R.id.npi_name);
             TextView npiTaxDesc = (TextView) convertView.findViewById(R.id.npi_tax_desc);
             TextView npiNumber = (TextView) convertView.findViewById(R.id.npi_number);
-
+            CheckBox favoriteCheckBox = (CheckBox) convertView.findViewById(R.id.add_favorite_checkbox);
+            favoriteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked) {
+                        result.setFavorite(true);
+                    } else {
+                        result.setFavorite(false);
+                    }
+                }
+            });
+            if(result.getFavorite()) {
+                favoriteCheckBox.setChecked(true);
+            } else {
+                favoriteCheckBox.setChecked(false);
+            }
             npiName.setText(result.getBasicInfo().getFullName());
             npiTaxDesc.setText(result.getTaxonomies().get(0).getDesc());
             npiNumber.setText("NPI #: " + String.valueOf(result.getNpi()));

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cmdblue" type="color">#0680D1</item>
+    <item name="cmdgreen" type="color">#51B21A</item>
+    <item name="white" type="color">#FFFFFF</item>
+</resources>
