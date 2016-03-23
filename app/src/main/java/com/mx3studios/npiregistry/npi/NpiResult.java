@@ -1,7 +1,5 @@
 package com.mx3studios.npiregistry.npi;
 
-import com.mx3studios.npiregistry.NpiBasicInfo;
-
 import java.util.ArrayList;
 
 /**

@@ -1,14 +1,9 @@
-package com.mx3studios.npiregistry;
+package com.mx3studios.npiregistry.npiDrawerFragment;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mx3studios.npiregistry.MainActivity;
+import com.mx3studios.npiregistry.R;
 import com.mx3studios.npiregistry.npi.NpiParserResult;
 import com.mx3studios.npiregistry.npi.NpiResult;
 

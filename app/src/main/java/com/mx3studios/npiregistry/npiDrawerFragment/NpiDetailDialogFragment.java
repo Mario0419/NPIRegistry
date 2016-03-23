@@ -1,4 +1,4 @@
-package com.mx3studios.npiregistry;
+package com.mx3studios.npiregistry.npiDrawerFragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.mx3studios.npiregistry.R;
 import com.mx3studios.npiregistry.npi.NpiResult;
 
 /**

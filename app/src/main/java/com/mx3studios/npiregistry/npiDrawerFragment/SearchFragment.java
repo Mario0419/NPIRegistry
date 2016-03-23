@@ -1,12 +1,12 @@
-package com.mx3studios.npiregistry;
+package com.mx3studios.npiregistry.npiDrawerFragment;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.mx3studios.npiregistry.R;
 
 public class SearchFragment extends Fragment {
 

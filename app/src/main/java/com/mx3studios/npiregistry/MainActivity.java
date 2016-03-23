@@ -1,34 +1,25 @@
 package com.mx3studios.npiregistry;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import android.os.AsyncTask;
-import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mx3studios.npiregistry.npi.*;
+import com.mx3studios.npiregistry.npiDatabase.NpiReaderDbHelper;
+import com.mx3studios.npiregistry.npiDrawerFragment.AboutFragment;
+import com.mx3studios.npiregistry.npiDrawerFragment.AdvanceSearchFragment;
+import com.mx3studios.npiregistry.npiDrawerFragment.FavoriteFragment;
+import com.mx3studios.npiregistry.npiDrawerFragment.ResultFragment;
+import com.mx3studios.npiregistry.npiDrawerFragment.SearchFragment;
 
 
 public class MainActivity extends FragmentActivity {
@@ -42,6 +33,8 @@ public class MainActivity extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
+    private NpiReaderDbHelper mDbHelper;
+
     private String[] menuList = new String[]{"Favorites", "Results", "Advanced Search", "About"};
 
     private String mTitle = "";
@@ -50,7 +43,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.npi_drawer_layout);
-
+        mDbHelper = new NpiReaderDbHelper(getApplicationContext());3
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.left_drawer);
         if(findViewById(R.id.fragment_container) != null) {

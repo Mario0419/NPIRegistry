@@ -1,4 +1,4 @@
-package com.mx3studios.npiregistry;
+package com.mx3studios.npiregistry.npi;
 
 /**
  * Created by Mario on 3/2/2016.

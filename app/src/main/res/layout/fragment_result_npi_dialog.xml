@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mx3studios.npiregistry.NpiResultDialogFragment">
+    tools:context="com.mx3studios.npiregistry.npiDrawerFragment.NpiResultDialogFragment">
 
     <LinearLayout
         android:id="@+id/npiResultLayout"
