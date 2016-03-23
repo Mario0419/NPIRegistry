@@ -43,7 +43,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.npi_drawer_layout);
-        mDbHelper = new NpiReaderDbHelper(getApplicationContext());3
+        mDbHelper = new NpiReaderDbHelper(getApplicationContext());
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.left_drawer);
         if(findViewById(R.id.fragment_container) != null) {

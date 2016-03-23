@@ -1,5 +1,9 @@
 package com.mx3studios.npiregistry.npi;
 
+import android.database.Cursor;
+
+import com.mx3studios.npiregistry.npiDatabase.NpiReaderContract;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +22,31 @@ public class NpiResult {
     private boolean favorite;
 
     public NpiResult() {
+
+    }
+
+    public NpiResult(Cursor c) {
+        setCursorValues(c);
+    }
+
+    private void setCursorValues(Cursor c) {
+        setNpi(Integer.parseInt(c.getString(0)));
+        basicInfo.setFirstName(c.getString(1));
+        basicInfo.setLastName(c.getString(2));
+        if(basicInfo.getLastName().isEmpty()) {
+            basicInfo.setLastName(c.getString(3));
+        }
+        taxonomies.get(0).setDesc(c.getString(4));
+        taxonomies.get(0).setCode(c.getString(5));
+        addresses.get(0).setAddress1(c.getString(6));
+        addresses.get(0).setCity(c.getString(7));
+        addresses.get(0).setState(c.getString(8));
+        addresses.get(0).setCountryName(c.getString(9));
+        addresses.get(0).setCountryCode(c.getString(10));
+        addresses.get(0).setPostalCode(c.getString(11));
+        addresses.get(0).setPhone(c.getString(12));
+        enumType = c.getString(13);
+        basicInfo.setLastUpdated(c.getString(14));
 
     }
 

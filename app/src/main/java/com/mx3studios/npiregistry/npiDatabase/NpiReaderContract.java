@@ -26,6 +26,7 @@ public final class NpiReaderContract {
         public static final String COLUMN_NAME_PHONE = "telephone";
         public static final String COLUMN_NAME_ENUM_TYPE = "enumType";
         public static final String COLUMN_NAME_LAST_UPDATED = "lastUpdated";
+        public static final String COLUMN_NAME_NULLABLE = "NULL";
     }
 
     private static final String TEXT_TYPE = " TEXT";
@@ -53,4 +54,21 @@ public final class NpiReaderContract {
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
 
+    public static final String[] COLUMNS = {
+            FeedEntry.COLUMN_NAME_ENTRY_ID,//0
+            FeedEntry.COLUMN_NAME_FIRST,//1
+            FeedEntry.COLUMN_NAME_LAST,//2
+            FeedEntry.COLUMN_NAME_ORG,//3
+            FeedEntry.COLUMN_NAME_TAX_DESC,//4
+            FeedEntry.COLUMN_NAME_TAX_CODE,//5
+            FeedEntry.COLUMN_NAME_ADDR,//6
+            FeedEntry.COLUMN_NAME_CITY,//7
+            FeedEntry.COLUMN_NAME_STATE,//8
+            FeedEntry.COLUMN_NAME_COUNTRY_NAME,//9
+            FeedEntry.COLUMN_NAME_COUNTRY_CODE,//10
+            FeedEntry.COLUMN_NAME_POSTAL_CODE,//11
+            FeedEntry.COLUMN_NAME_PHONE,//12
+            FeedEntry.COLUMN_NAME_ENUM_TYPE,//13
+            FeedEntry.COLUMN_NAME_LAST_UPDATED//14
+    };
 }
