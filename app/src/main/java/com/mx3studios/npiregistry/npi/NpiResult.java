@@ -98,5 +98,10 @@ public class NpiResult {
     public boolean getFavorite() {
         return favorite;
     }
+
+    @Override
+    public String toString() {
+        return (basicInfo.getFirstName() + " " + basicInfo.getLastName());
+    }
 }
 

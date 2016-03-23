@@ -100,6 +100,10 @@ public class MainActivity extends FragmentActivity {
         worker.execute();
     }
 
+    public FavoriteFragment getFavoriteFragment() {
+        return mFavoriteFragment == null ? new FavoriteFragment() : mFavoriteFragment;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

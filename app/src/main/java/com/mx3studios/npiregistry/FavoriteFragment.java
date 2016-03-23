@@ -26,7 +26,6 @@ public class FavoriteFragment extends Fragment {
     private ArrayAdapter<String> arrayAdapter = null;
     private SearchNpiDialogFragment mdialogSearchFragment = null;
     int layout = R.layout.fragment_favorite;
-//    private ResultFragment mNpiResultFragment = null;
     private NpiDetailDialogFragment mNpiDetailFragment = null;
 
     public static FavoriteFragment newInstance() {
@@ -35,14 +34,16 @@ public class FavoriteFragment extends Fragment {
         return fragment;
     }
 
+    public FavoriteFragment() {
+        list = new ArrayList<>();
+        list.add("mario");
+        list.add("massad");
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        list = new ArrayList<String>();
-        list.add("mario");
-        list.add("massad");
 
         listView = (ListView)view.findViewById(R.id.favoritelist);
 
@@ -70,6 +71,14 @@ public class FavoriteFragment extends Fragment {
         mdialogSearchFragment.show(getFragmentManager(), "dialog");
     }
 
+    public void addNewFavorites(ArrayList<NpiResult> results) {
+        for(NpiResult result : results) {
+            arrayAdapter.add(result.toString());
+        }
+        arrayAdapter.notifyDataSetChanged();
+        listView.setAdapter(arrayAdapter);
+
+    }
     public NpiQuery getQuery(View v) {
         NpiQuery query = new NpiQuery();
         query.setFirstName(mdialogSearchFragment.getFirstName());

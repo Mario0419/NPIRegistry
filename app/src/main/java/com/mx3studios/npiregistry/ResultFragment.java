@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -39,27 +40,39 @@ public class ResultFragment extends Fragment {
         ResultFragment fragment = new ResultFragment();
         return fragment;
     }
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     public void setNpiParserResult(NpiParserResult result) {
         npiresult = result;
-        for(int i = 0 ; i < npiresult.getResultList().size(); i++) {
-            System.out.println(npiresult.getResultList().get(i).getNpi());
-        }
-        System.out.println(npiAdapter);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_result_npi_dialog, container, false);
-       if(npiresult == null) {
-           npiresult = new NpiParserResult();
-       }
-        Log.e("ERROR BUB", "I Was here");
+        if(npiresult == null) {
+            npiresult = new NpiParserResult();
+        }
         processResult(view);
+        Button addFavoriteButton = (Button)view.findViewById(R.id.add_favorite_button);
+        addFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<NpiResult> resultList = getFavoriteResults();
+                ((MainActivity)getActivity()).getFavoriteFragment().addNewFavorites(resultList);
+            }
+        });
         return view;
+    }
+
+    private ArrayList<NpiResult> getFavoriteResults() {
+        ArrayList<NpiResult> resultList = new ArrayList<>();
+        for(int i = 0; i < npiAdapter.getCount(); i++) {
+            NpiResult result = npiAdapter.getItem(i);
+            View v = npiAdapter.getView(i, null, null);
+            CheckBox box = (CheckBox)v.findViewById(R.id.add_favorite_checkbox);
+            if(box.isChecked()) {
+                resultList.add(result);
+            }
+        }
+        return resultList;
     }
 
     private void processResult(View view) {
@@ -100,7 +113,7 @@ public class ResultFragment extends Fragment {
             favoriteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked) {
+                    if (isChecked) {
                         result.setFavorite(true);
                     } else {
                         result.setFavorite(false);

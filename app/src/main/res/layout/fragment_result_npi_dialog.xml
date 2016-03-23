@@ -9,10 +9,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESULT :)"/>
+
         <ListView
             android:id="@+id/resultList"
             android:layout_width="match_parent"
@@ -22,9 +19,11 @@
 
         </ListView>
         <Button
+            android:id="@+id/add_favorite_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/addToFavorite"
-            android:background="@color/cmdblue"/>
+            android:background="@color/cmdgreen"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </FrameLayout>
