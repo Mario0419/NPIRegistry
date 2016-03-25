@@ -33,8 +33,7 @@ public final class NpiReaderContract {
     private static final String COMMA_SEP = ",";
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
-                    FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
+                    FeedEntry.COLUMN_NAME_ENTRY_ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                     FeedEntry.COLUMN_NAME_FIRST + TEXT_TYPE + COMMA_SEP +
                     FeedEntry.COLUMN_NAME_LAST + TEXT_TYPE + COMMA_SEP +
                     FeedEntry.COLUMN_NAME_ORG + TEXT_TYPE + COMMA_SEP +
