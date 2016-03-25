@@ -46,7 +46,7 @@ public class FavoriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 
         listView = (ListView)view.findViewById(R.id.favoritelist);
-        list = ((MainActivity)getActivity()).getNpiDbHelper().getFavoriteResultList();
+        list = ((MainActivity)getActivity()).getNpiDbHelper().getAllFavorites();
         arrayAdapter = new NpiAdapter(
                 getActivity().getApplicationContext(),
                 list

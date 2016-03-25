@@ -48,7 +48,7 @@ public final class NpiReaderContract {
                     FeedEntry.COLUMN_NAME_POSTAL_CODE + TEXT_TYPE + COMMA_SEP +
                     FeedEntry.COLUMN_NAME_PHONE + TEXT_TYPE + COMMA_SEP +
                     FeedEntry.COLUMN_NAME_ENUM_TYPE + TEXT_TYPE + COMMA_SEP +
-                    FeedEntry.COLUMN_NAME_LAST_UPDATED + TEXT_TYPE + COMMA_SEP
+                    FeedEntry.COLUMN_NAME_LAST_UPDATED + TEXT_TYPE
              + ")";
 
     public static final String SQL_DELETE_ENTRIES =

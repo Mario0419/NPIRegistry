@@ -22,14 +22,23 @@ public class NpiResult {
     private boolean favorite;
 
     public NpiResult() {
-
+        addresses = new ArrayList<>();
+        identifiers = new ArrayList<>();
+        taxonomies = new ArrayList<>();
+        otherNames = new ArrayList<>();
+        basicInfo = new NpiBasicInfo();
     }
 
     public NpiResult(Cursor c) {
+        this();
         setCursorValues(c);
     }
 
     private void setCursorValues(Cursor c) {
+
+        taxonomies.add(new NpiTaxonomy());
+        addresses.add(new NpiAddress());
+
         setNpi(Integer.parseInt(c.getString(0)));
         basicInfo.setFirstName(c.getString(1));
         basicInfo.setLastName(c.getString(2));
