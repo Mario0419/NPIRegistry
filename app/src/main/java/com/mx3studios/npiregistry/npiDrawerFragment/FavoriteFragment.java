@@ -1,5 +1,6 @@
 package com.mx3studios.npiregistry.npiDrawerFragment;
 
+import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.mx3studios.npiregistry.MainActivity;
 import com.mx3studios.npiregistry.R;
 import com.mx3studios.npiregistry.npi.NpiQuery;
 import com.mx3studios.npiregistry.npi.NpiResult;
@@ -19,8 +24,8 @@ import java.util.List;
 
 public class FavoriteFragment extends Fragment {
 
-    private List<String> list = null;
-    private ArrayAdapter<String> arrayAdapter = null;
+    private ArrayList<NpiResult> list = null;
+    private NpiAdapter arrayAdapter = null;
     private SearchNpiDialogFragment mdialogSearchFragment = null;
     int layout = R.layout.fragment_favorite;
     private NpiDetailDialogFragment mNpiDetailFragment = null;
@@ -33,8 +38,6 @@ public class FavoriteFragment extends Fragment {
 
     public FavoriteFragment() {
         list = new ArrayList<>();
-        list.add("mario");
-        list.add("massad");
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,10 +46,9 @@ public class FavoriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 
         listView = (ListView)view.findViewById(R.id.favoritelist);
-
-        arrayAdapter = new ArrayAdapter<String>(
+        list = ((MainActivity)getActivity()).getNpiDbHelper().getFavoriteResultList();
+        arrayAdapter = new NpiAdapter(
                 getActivity().getApplicationContext(),
-                android.R.layout.simple_list_item_1,
                 list
         );
         searchButton = (Button)view.findViewById(R.id.searchButton);
@@ -70,7 +72,7 @@ public class FavoriteFragment extends Fragment {
 
     public void addNewFavorites(ArrayList<NpiResult> results) {
         for(NpiResult result : results) {
-            arrayAdapter.add(result.toString());
+            arrayAdapter.add(result);
         }
         arrayAdapter.notifyDataSetChanged();
         listView.setAdapter(arrayAdapter);
@@ -92,4 +94,28 @@ public class FavoriteFragment extends Fragment {
 
     private ListView listView;
     private Button searchButton;
+    public class NpiAdapter extends ArrayAdapter<NpiResult> {
+        public NpiAdapter(Context context, ArrayList<NpiResult> providers) {
+            super(context, 0, providers);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final NpiResult result = getItem(position);
+            if(convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.npi_list_item, parent, false);
+            }
+
+            TextView npiName = (TextView) convertView.findViewById(R.id.npi_name);
+            TextView npiTaxDesc = (TextView) convertView.findViewById(R.id.npi_tax_desc);
+            TextView npiNumber = (TextView) convertView.findViewById(R.id.npi_number);
+            CheckBox favoriteCheckBox = (CheckBox) convertView.findViewById(R.id.add_favorite_checkbox);
+            favoriteCheckBox.setVisibility(View.GONE);
+
+            npiName.setText(result.getBasicInfo().getFullName());
+            npiTaxDesc.setText(result.getTaxonomies().get(0).getDesc());
+            npiNumber.setText("NPI #: " + String.valueOf(result.getNpi()));
+            return convertView;
+        }
+    }
 }

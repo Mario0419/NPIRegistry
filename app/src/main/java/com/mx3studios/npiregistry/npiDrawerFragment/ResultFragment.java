@@ -53,7 +53,9 @@ public class ResultFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<NpiResult> resultList = getFavoriteResults();
-                ((MainActivity)getActivity()).getFavoriteFragment().addNewFavorites(resultList);
+//                ((MainActivity)getActivity()).getFavoriteFragment().addNewFavorites(resultList);
+                ((MainActivity)getActivity()).getNpiDbHelper().saveFavorites(resultList);
+                ((MainActivity)getActivity()).setPosition(0);
             }
         });
         return view;

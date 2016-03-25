@@ -183,4 +183,8 @@ public class MainActivity extends FragmentActivity {
         return mResultFragment;
     }
 
+    public NpiReaderDbHelper getNpiDbHelper() {
+        return mDbHelper;
+    }
+
 }
