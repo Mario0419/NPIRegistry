@@ -4,41 +4,48 @@
     tools:context="com.mx3studios.npiregistry.npiDrawerFragment.SearchNpiDialogFragment">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/npiSearchLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/searchTitle"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"/>
+            android:text="@string/app_name"
+            android:layout_marginTop="20dp"/>
         <EditText
             android:id="@+id/first_name"
-            android:layout_below="@id/searchTitle"
             android:maxLength="25"
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name"/>
+            android:hint="First Name"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
 
         <EditText
             android:id="@+id/last_name"
-            android:layout_below="@id/first_name"
             android:maxLength="25"
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name"/>
+            android:hint="Last Name"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"/>
         <Button
             android:id="@+id/buttonSearchNpi"
-            android:layout_below="@id/last_name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_npi"
-            android:onClick="searchNpi"/>
-    </RelativeLayout>
+            android:onClick="searchNpi"
+            android:background="@color/cmdgreen"
+            android:textColor="@color/white"/>
+    </LinearLayout>
 </FrameLayout>

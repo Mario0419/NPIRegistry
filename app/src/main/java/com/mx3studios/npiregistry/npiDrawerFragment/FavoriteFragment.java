@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +20,6 @@ import com.mx3studios.npiregistry.npi.NpiQuery;
 import com.mx3studios.npiregistry.npi.NpiResult;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FavoriteFragment extends Fragment {
 
@@ -55,17 +54,29 @@ public class FavoriteFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showSearchDialog();
             }
         });
         listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDetailedDialog((NpiResult)listView.getItemAtPosition(position));
+            }
+        });
         return view;
     }
 
     public int getLayoutRes() {
         return layout;
     }
-    private void showDialog() {
+
+    private void showDetailedDialog(NpiResult result) {
+        mNpiDetailFragment = new NpiDetailDialogFragment();
+        mNpiDetailFragment.setNpiResult(result);
+        mNpiDetailFragment.show(getFragmentManager(), "dialog");
+    }
+    private void showSearchDialog() {
         mdialogSearchFragment = new SearchNpiDialogFragment();
         mdialogSearchFragment.show(getFragmentManager(), "dialog");
     }

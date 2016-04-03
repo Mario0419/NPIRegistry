@@ -131,7 +131,7 @@ public class NpiResult {
         this.favorite = favorite;
     }
 
-    public boolean getFavorite() {
+    public boolean isFavorite() {
         return favorite;
     }
 

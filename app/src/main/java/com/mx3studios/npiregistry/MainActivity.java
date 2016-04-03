@@ -1,11 +1,15 @@
 package com.mx3studios.npiregistry;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +37,7 @@ public class MainActivity extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
+    private Toolbar toolbar;
     private NpiReaderDbHelper mDbHelper;
 
     private String[] menuList = new String[]{"Favorites", "Results", "Advanced Search", "About"};
@@ -43,6 +48,9 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.npi_drawer_layout);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(menuList[0]);
+        toolbar.setTitleTextColor(Color.WHITE);
         mDbHelper = new NpiReaderDbHelper(getApplicationContext());
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.left_drawer);
@@ -103,11 +111,15 @@ public class MainActivity extends FragmentActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id) {
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -159,7 +171,7 @@ public class MainActivity extends FragmentActivity {
                 break;
         }
         fragment.setArguments(args);
-
+        toolbar.setTitle(menuList[position]);
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
@@ -186,5 +198,4 @@ public class MainActivity extends FragmentActivity {
     public NpiReaderDbHelper getNpiDbHelper() {
         return mDbHelper;
     }
-
 }

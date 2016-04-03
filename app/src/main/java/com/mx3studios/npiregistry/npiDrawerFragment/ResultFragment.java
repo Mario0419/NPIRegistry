@@ -27,7 +27,6 @@ import java.util.ArrayList;
  */
 public class ResultFragment extends Fragment {
     private FragmentManager fm;
-//    private View view = null;
     private NpiParserResult npiresult;
     private boolean noResult = false;
     private ListView listView;
@@ -53,7 +52,6 @@ public class ResultFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<NpiResult> resultList = getFavoriteResults();
-//                ((MainActivity)getActivity()).getFavoriteFragment().addNewFavorites(resultList);
                 ((MainActivity)getActivity()).getNpiDbHelper().saveFavorites(resultList);
                 ((MainActivity)getActivity()).setPosition(0);
             }
@@ -112,18 +110,10 @@ public class ResultFragment extends Fragment {
             favoriteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        result.setFavorite(true);
-                    } else {
-                        result.setFavorite(false);
-                    }
+                    result.setFavorite(isChecked);
                 }
             });
-            if(result.getFavorite()) {
-                favoriteCheckBox.setChecked(true);
-            } else {
-                favoriteCheckBox.setChecked(false);
-            }
+            favoriteCheckBox.setChecked(result.isFavorite());
             npiName.setText(result.getBasicInfo().getFullName());
             npiTaxDesc.setText(result.getTaxonomies().get(0).getDesc());
             npiNumber.setText("NPI #: " + String.valueOf(result.getNpi()));
