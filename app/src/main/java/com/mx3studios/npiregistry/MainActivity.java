@@ -28,18 +28,23 @@ import com.mx3studios.npiregistry.npiDrawerFragment.SearchFragment;
 
 public class MainActivity extends FragmentActivity {
 
+    //fragments in navigational drawer fragment
     private SearchFragment mSearchFragment = null;
     private FavoriteFragment mFavoriteFragment = null;
     private ResultFragment mResultFragment = null;
     private AdvanceSearchFragment mAdvanceSearchFragment = null;
     private AboutFragment mAboutFragment = null;
+
     private int selectedPosition = 0;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
     private Toolbar toolbar;
+
+    //db helper
     private NpiReaderDbHelper mDbHelper;
 
+    //options in navigational drawer fragment
     private String[] menuList = new String[]{"Favorites", "Results", "Advanced Search", "About"};
 
     private String mTitle = "";
@@ -74,6 +79,7 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
+    //makes api call to npi registry and opens up result tab
     public void searchNpi(View v) {
         final NpiQuery query = mFavoriteFragment.getQuery(v);
         mFavoriteFragment.closeSearchDialog();
@@ -133,6 +139,8 @@ public class MainActivity extends FragmentActivity {
     public void setPosition(int position) {
         selectItem(position);
     }
+
+    //changes fragment from user input in navigational drawer fragment
     private void selectItem(int position) {
         Fragment fragment = null;
         Bundle args = new Bundle();
