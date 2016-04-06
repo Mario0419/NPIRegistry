@@ -8,8 +8,10 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.mx3studios.npiregistry.MainActivity;
 import com.mx3studios.npiregistry.R;
 import com.mx3studios.npiregistry.npi.NpiResult;
 
@@ -23,6 +25,8 @@ public class NpiDetailDialogFragment extends DialogFragment{
     private View view;
     private NpiResult provider;
 
+    private Button deleteButton;
+    private Button cancelButton;
 
     public void setNpiResult(NpiResult result) {
         provider = result;
@@ -73,6 +77,25 @@ public class NpiDetailDialogFragment extends DialogFragment{
 
         textView = (TextView)view.findViewById(R.id.detailed_fax);
         textView.setText(provider.getAddresses().get(0).getFax());
+
+        deleteButton = (Button)view.findViewById(R.id.delete_button);
+        cancelButton = (Button)view.findViewById(R.id.cancel_button);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).getNpiDbHelper().deleteNpiEntry();
+                dismiss();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
     }
 
     @Override

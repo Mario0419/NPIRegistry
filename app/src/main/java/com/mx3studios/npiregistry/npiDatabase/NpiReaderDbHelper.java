@@ -74,4 +74,9 @@ public class NpiReaderDbHelper extends SQLiteOpenHelper {
 
         return resultList;
     }
+
+    public void deleteNpiEntry(int npi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(NpiReaderContract.FeedEntry.TABLE_NAME, "entryid = ? ", new String[]{String.valueOf(npi)});
+    }
 }
