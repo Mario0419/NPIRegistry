@@ -84,7 +84,7 @@ public class NpiDetailDialogFragment extends DialogFragment{
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).getNpiDbHelper().deleteNpiEntry();
+                ((MainActivity)getActivity()).getNpiDbHelper().deleteNpiEntry(provider.getNpi());
                 dismiss();
             }
         });
