@@ -5,15 +5,22 @@
     android:layout_height="match_parent"
     tools:context="com.mx3studios.npiregistry.npiDrawerFragment.AdvanceSearchFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Advance NPI Search"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Advance NPI Search"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"/>
 
+        <EditText
+            android:id="@+id/npi_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NPI #"/>
         <EditText
             android:id="@+id/first_name"
             android:singleLine="true"
@@ -30,6 +37,47 @@
             android:layout_height="wrap_content"
             android:hint="Last Name"/>
 
+        <EditText
+            android:id="@+id/city_search"
+            android:singleLine="true"
+            android:hint="City"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/state_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="State"/>
+
+        <EditText
+            android:id="@+id/country_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country"/>
+
+        <EditText
+            android:id="@+id/zip_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ZipCode"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:spinnerMode="dialog" />
+
+
     </LinearLayout>
+    <Button
+        android:id="@+id/buttonSearchNpi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:onClick="searchNpi"
+        android:background="@color/cmdgreen"
+        android:textColor="@color/white"
+        android:text="@string/search_npi"/>
 
 </FrameLayout>

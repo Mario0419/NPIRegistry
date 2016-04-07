@@ -107,6 +107,35 @@ public class MainActivity extends FragmentActivity {
         worker.execute();
     }
 
+    public void searchAdvanceNpi(View v) {
+        final NpiQuery query = mAdvanceSearchFragment.getQuery(v);
+
+        AsyncTask<Void, Void, NpiParserResult> worker = new AsyncTask<Void, Void, NpiParserResult>() {
+            @Override
+            protected NpiParserResult doInBackground(Void... voids) {
+
+                NpiParser parser = new NpiParser(query.getApiUrl());
+                NpiParserResult result = null;
+                try {
+                    result = parser.getResults();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(NpiParserResult result) {
+                getResultFragment();
+                mResultFragment.setNpiParserResult(result);
+                setPosition(1);
+            }
+        };
+        worker.execute();
+    }
+
+
+
     public FavoriteFragment getFavoriteFragment() {
         return mFavoriteFragment == null ? new FavoriteFragment() : mFavoriteFragment;
     }

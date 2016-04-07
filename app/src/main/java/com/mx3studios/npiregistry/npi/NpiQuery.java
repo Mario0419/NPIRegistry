@@ -17,7 +17,7 @@ public class NpiQuery {
     private String state="";
     private String zipCode = "";
     private String countryCode = "";
-    private String limit = "100";
+    private String limit = "200";
     private String skip = "";
 
     private String url = "https://npiregistry.cms.hhs.gov/api/?";
@@ -56,5 +56,32 @@ public class NpiQuery {
 
     public void setLastName(String name) {
         lastName = name;
+    }
+
+    public void setNpi(String npi) {
+        this.npi = npi;
+    }
+    public void setEnumType(String type) {
+        enumType = type;
+    }
+
+    public void setTaxDesc(String desc) {
+        this.taxDesc = desc;
+    }
+    public void setOrgName(String name) {
+        orgName = name;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 }
