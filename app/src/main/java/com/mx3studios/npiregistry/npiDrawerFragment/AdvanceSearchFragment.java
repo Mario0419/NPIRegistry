@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mx3studios.npiregistry.R;
@@ -37,7 +39,10 @@ public class AdvanceSearchFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_advance_search, container, false);
-
+        Spinner spinner = (Spinner)view.findViewById(R.id.state_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.state_names, android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         return view;
     }
 
@@ -47,8 +52,6 @@ public class AdvanceSearchFragment extends Fragment{
         query.setLastName(((TextView) v.findViewById(R.id.last_name)).getText().toString());
         query.setNpi(((TextView) v.findViewById(R.id.npi_number)).getText().toString());
         query.setCity(((TextView) v.findViewById(R.id.city_search)).getText().toString());
-        query.setState(((TextView) v.findViewById(R.id.state_search)).getText().toString());
-        query.setCountryCode(((TextView) v.findViewById(R.id.country_search)).getText().toString());
         query.setZipCode(((TextView) v.findViewById(R.id.zip_search)).getText().toString());
         return query;
     }

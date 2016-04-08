@@ -20,6 +20,7 @@
             android:id="@+id/npi_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="NPI #"/>
         <EditText
             android:id="@+id/first_name"
@@ -44,30 +45,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/state_search"
+        <Spinner
+            android:id="@+id/state_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="State"/>
+            android:spinnerMode="dialog" />
 
-        <EditText
-            android:id="@+id/country_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Country"/>
+
 
         <EditText
             android:id="@+id/zip_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ZipCode"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:spinnerMode="dialog" />
-
+            android:inputType="number"
+            android:hint="Zip Code"/>
 
     </LinearLayout>
     <Button
