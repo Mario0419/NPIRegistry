@@ -9,7 +9,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/cmd_background">
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -42,6 +43,14 @@
             android:hint="Last Name"/>
 
         <EditText
+            android:id="@+id/organization_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxLength="50"
+            android:hint="Organization Name"/>
+
+        <EditText
             android:id="@+id/city_search"
             android:singleLine="true"
             android:hint="City"
@@ -70,7 +79,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:onClick="searchNpi"
+        android:onClick="searchAdvanceNpi"
         android:background="@color/cmdgreen"
         android:textColor="@color/white"
         android:text="@string/search_npi"/>

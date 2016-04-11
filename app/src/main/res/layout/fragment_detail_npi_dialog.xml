@@ -6,27 +6,39 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Detailed Information"
+        android:text="Provider Information"
         android:background="@color/cmdblue"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="16dp"/>
-    <TextView
-        android:id="@+id/detailed_name"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/detailed_taxonomy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/detailed_npi"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="NPI # "/>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detailed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/detailed_taxonomy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/detailed_npi"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:text="NPI #: "
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -37,94 +49,109 @@
         android:textSize="16dp"
         android:gravity="center"/>
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
-        <TableRow>
-            <TextView
-                android:id="@+id/detailed_address_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address: "/>
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
 
-            <TextView
-                android:id="@+id/detailed_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <TableRow>
+                <TextView
+                    android:id="@+id/detailed_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Address: "/>
 
-        </TableRow>
-        <TableRow>
+                <TextView
+                    android:id="@+id/detailed_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </TableRow>
+            <TableRow>
                 <TextView
                     android:id="@+id/detailed_city_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="City: "/>
                 <TextView
                     android:id="@+id/detailed_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/detailed_state_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="State: "/>
-            <TextView
-                android:id="@+id/detailed_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/detailed_state_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="State: "/>
+                <TextView
+                    android:id="@+id/detailed_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow>
 
-            <TextView
-                android:id="@+id/detailed_country_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Country: "/>
-            <TextView
-                android:id="@+id/detailed_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/detailed_zipcode_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zip: "/>
-            <TextView
-                android:id="@+id/detailed_zipcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/detailed_phone_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone # "/>
-            <TextView
-                android:id="@+id/detailed_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/detailed_fax_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fax # "/>
-            <TextView
-                android:id="@+id/detailed_fax"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </TableRow>
+                <TextView
+                    android:id="@+id/detailed_country_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Country: "/>
+                <TextView
+                    android:id="@+id/detailed_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/detailed_zipcode_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Zip: "/>
+                <TextView
+                    android:id="@+id/detailed_zipcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/detailed_phone_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Phone #: "/>
+                <TextView
+                    android:id="@+id/detailed_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/detailed_fax_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Fax #: "/>
+                <TextView
+                    android:id="@+id/detailed_fax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
 
-    </TableLayout>
+        </TableLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

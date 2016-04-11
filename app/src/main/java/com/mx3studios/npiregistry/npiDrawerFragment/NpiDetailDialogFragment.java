@@ -17,6 +17,8 @@ import com.mx3studios.npiregistry.npi.NpiResult;
 
 import org.w3c.dom.Text;
 
+import Mx3Utils.FormatUtils;
+
 /**
  * Created by Mario on 3/6/2016.
  */
@@ -55,7 +57,7 @@ public class NpiDetailDialogFragment extends DialogFragment{
         textView.setText(provider.getTaxonomies().get(0).getDesc());
 
         textView = (TextView)view.findViewById(R.id.detailed_npi);
-        textView.setText(String.valueOf(provider.getNpi()));
+        textView.append(String.valueOf(provider.getNpi()));
 
         textView = (TextView)view.findViewById(R.id.detailed_address);
         textView.setText(provider.getAddresses().get(0).getAddress1());
@@ -70,7 +72,7 @@ public class NpiDetailDialogFragment extends DialogFragment{
         textView.setText(provider.getAddresses().get(0).getCountryName());
 
         textView = (TextView)view.findViewById(R.id.detailed_zipcode);
-        textView.setText(provider.getAddresses().get(0).getPostalCode());
+        textView.setText(FormatUtils.formatZipCode(provider.getAddresses().get(0).getPostalCode()));
 
         textView = (TextView)view.findViewById(R.id.detailed_phone);
         textView.setText(provider.getAddresses().get(0).getPhone());
